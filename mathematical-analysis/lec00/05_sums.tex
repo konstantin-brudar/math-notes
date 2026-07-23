@@ -1,0 +1,47 @@
+\section{Суммы}
+
+Запись суммы:
+\[
+    \sum_{k=1}^n a_k = a_1 + a_2 + \cdots + a_n
+\]
+
+Сумма $n$ первых членов арифметической прогрессии $a_k \coloneqq a_1 + d(k-1)$:
+\[
+    S_n = \frac{a_1 + a_n}{2} \cdot n = \frac{2a_1 + d(n-1)}{2} \cdot n
+\]
+
+Сумма $n$ первых членов геометрической прогрессии $b_k \coloneqq b_1 \cdot q^{k-1}$
+(при $b_1 \neq 0, \, q \neq 0$):
+\[
+    S_n = \frac{b_1 - b_n q}{1-q} = b_1 \frac{1 - q^n}{1-q}, \quad \text{если} \quad q \neq 1
+\]
+
+Суммы синусов и косинусов (при $\alpha \neq 2 \pi m$, $m \in \Z$):
+\begin{align*}
+    \sum_{k=0}^n \cos(x + k\alpha) &=
+        \frac{\sin\left(\frac{n+1}{2}\alpha\right)\cos\left(x
+        + \frac{n}{2}\alpha\right)}{\sin \frac{\alpha}{2}} \\
+    \sum_{k=0}^n \sin(x + k\alpha) &=
+        \frac{\sin\left(\frac{n+1}{2}\alpha\right)\sin\left(x
+        + \frac{n}{2}\alpha\right)}{\sin \frac{\alpha}{2}}
+\end{align*}
+
+\begin{theorem}{Бином Ньютона}{}
+    \[
+        (a+b)^n = \Cnk{n}{0} a^n + \Cnk{n}{1} a^{n-1}b + \cdots
+        + \Cnk{n}{k} a^{n-k}b^k + \cdots + \Cnk{n}{n} b^n
+        = \sum_{k=0}^n \Cnk{n}{k} a^{n-k}b^k
+    \]
+\end{theorem}
+
+Двойная сумма из $m \cdot n$ слагаемых $a_{ij}$,
+где индексы независимо принимают значения $i=1,\dots,n$ и $j=1,\dots,m$:
+\[
+    \sum_{i=1}^n \sum_{j=1}^m a_{ij} = \sum_{j=1}^m \sum_{i=1}^n a_{ij}
+    = \sum_{\substack{1 \le i \le n \\ 1 \le j \le m}} a_{ij}
+\]
+
+Сумма элементов квадратной матрицы без учета элементов её главной диагонали:
+\[
+    \sum_{\substack{i, j = 1 \\ i \neq j}}^n a_{ij}
+\]

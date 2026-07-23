@@ -1,0 +1,118 @@
+% ==========================
+% ПРЕАМБУЛА КОНСПЕКТА ЛЕКЦИЙ
+% ==========================
+
+% 1. НАЧАЛО: Языки и шрифты (СТРОГО В НАЧАЛЕ!)
+\usepackage{cmap}            % Поиск и копирование русского текста из PDF
+\usepackage[utf8]{inputenc}  % Кодировка исходного текста
+\usepackage[T2A]{fontenc}    % Поддержка кириллических шрифтов
+\usepackage[russian]{babel}  % Правила русского языка и переносы строк
+
+% 2. ГЕОМЕТРИЯ: Размеры полей страницы
+\usepackage[
+    left=2cm,
+    right=2cm,
+    top=2cm,
+    bottom=2cm
+]{geometry}
+
+% 3. МАТЕМАТИКА: Базовые пакеты и расширения
+\usepackage{mathtools}       % Улучшения amsmath
+\usepackage{amssymb}         % Классические мат. символы и шрифты
+\usepackage{amsthm}          % Родной классический пакет теорем
+
+% Знаки неравенств
+\renewcommand{\le}{\leqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\geq}{\geqslant}
+
+% Знак разности множеств
+\renewcommand{\setminus}{\backslash}
+
+% Операторы для отображений
+\DeclareMathOperator{\Def}{Def}
+\DeclareMathOperator{\D}{D}
+\DeclareMathOperator{\Gr}{Gr}
+\AtBeginDocument{
+    \renewcommand{\Im}{\operatorname{Im}}
+}
+
+% 4. ГРАФИКА: Иллюстрации и рисунки
+\usepackage{graphicx}        % Вставка готовых картинок (PNG, JPG, PDF)
+\usepackage{tikz}            % Рисование графиков и схем кодом
+
+% 5. ТИПОГРАФИКА: Оформление текста
+\usepackage{indentfirst}     % Принудительный отступ (красная строка) для всех абзацев
+\usepackage{microtype}       % Выравнивание краев текста без разрывов слов
+\usepackage{enumitem}
+\setlist{
+    nosep,                   % Убирает вертикальные отступы между элементами списка
+    topsep=3pt,              % Минимальный аккуратный отступ перед началом всего списка
+    partopsep=0pt,
+    parsep=0pt,
+    leftmargin=*,            % Выравнивает маркеры по левому краю текста
+    labelindent=\parindent   % Делает отступ списка равным обычной красной строке
+}
+
+% 6. ТЕОРЕМЫ И ОПРЕДЕЛЕНИЯ: Специальные блоки для математики
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+
+% Цвета
+\definecolor{edugreen}{RGB}{85, 139, 87}    % Тёплый травянисто-оливковый
+\definecolor{edublue}{RGB}{74, 119, 162}    % Чистый пастельно-голубой
+\definecolor{edugray}{RGB}{125, 125, 120}   % Мягкий тёплый серый
+\definecolor{eduorange}{RGB}{210, 115, 65}  % Приглушенный терракотово-оранжевый
+\definecolor{edupurple}{RGB}{135, 105, 150} % Благородный черничный/лавандовый
+\definecolor{edured}{RGB}{185, 80, 85}      % Мягкий бруснично-красный
+\definecolor{eduteal}{RGB}{65, 135, 130}    % Спокойный морской волны/чирок
+\definecolor{eduyellow}{RGB}{195, 155, 60}  % Горчично-золотой
+
+% Макрос для создания математического блока
+% Аргументы: #1=тех.имя(en), #2=отображение(ru), #3=счетчик, #4=цвет, #5=фон%, #6=шрифт, #7=префикс
+\newcommand{\newmathblock}[7]{%
+    \newtcbtheorem[#3]{#1}{#2}{
+        enhanced, breakable, sharp corners, boxrule=0.5pt, leftrule=0pt,
+        top=6pt, bottom=6pt, left=10pt, right=10pt,
+        before=\vspace{0.4em}, after=\vspace{0.0em},
+        attach title to upper=\par, after title={\noindent\hspace{\parindent}},
+        fonttitle=\bfseries, separator sign={}, coltitle=black,
+        description font=\normalfont\itshape,
+        colback=#4!#5!white, colframe=#4!25, borderline west={3pt}{0pt}{#4!85},
+        fontupper=#6
+    }{#7}%
+}
+
+% Окружения математических блоков
+\newmathblock{theorem}{Теорема}{number within=chapter}{edugreen}{4}{\normalfont}{th}
+\newmathblock{lemma}{Лемма}{use counter from=theorem}{edugreen}{4}{\normalfont}{lem}
+\newmathblock{definition}{Определение}{number within=chapter}{edublue}{4}{\normalfont}{def}
+\newmathblock{example}{Пример}{number within=chapter}{edugray}{5}{\normalfont}{ex}
+
+% 7. ЛОКАЛИЗАЦИЯ: Переименование стандартных названий
+\addto\captionsrussian{\renewcommand{\chaptername}{Лекция}}      % Глава
+\addto\captionsrussian{\renewcommand{\contentsname}{Содержание}} % Оглавление
+
+% 8. НУМЕРАЦИЯ: Формат разделов
+\renewcommand{\thesection}{§\,\arabic{section}} % Параграфы в виде: § 1
+
+% 9. МАКРОСЫ: Сокращения для быстрого набора
+\newcommand{\N}{\mathbb{N}}     % Натуральные числа
+\newcommand{\Z}{\mathbb{Z}}     % Целые числа
+\newcommand{\Q}{\mathbb{Q}}     % Рациональные числа
+\newcommand{\R}{\mathbb{R}}     % Вещественные числа
+\newcommand{\eps}{\varepsilon}  % Эпсилон
+
+% Символы комбинаторики
+\newcommand{\Ank}[2]{\mathrm{A}_{#1}^{#2}} % Размещение из n по k
+\newcommand{\Cnk}[2]{\mathrm{C}_{#1}^{#2}} % Сочетание из n по k
+\newcommand{\Pn}[1]{\mathrm{P}_{#1}}       % Перестановка из n
+
+% 10. КОНЕЦ: Интерактивность и ссылки (СТРОГО В КОНЦЕ!)
+\usepackage[
+    colorlinks=true,   % Цветной текст для ссылок вместо цветных рамок
+    linkcolor=black,   % Черный цвет ссылок в оглавлении
+    urlcolor=blue,     % Синий цвет для интернет-ссылок
+    citecolor=black    % Черный цвет для библиографии
+]{hyperref}
